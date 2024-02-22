@@ -1,0 +1,16 @@
+
+.container{
+    display:flex;
+    justify-content: flex-end;
+  }
+.nav__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Use flexbox */
+  }
+  
+  .nav__item {
+    margin-right: 10px; /* Adjust spacing between items */
+  }
+
