@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import '../Styles/App.css';
 
 function JobApplicationHeader(){
   return (
@@ -36,8 +36,10 @@ export default function CreateEmployeeForm() {
       <label htmlFor="RightToWorkCheckBox">Do you have UK Right To Work</label><br/>
       <input type="checkbox" name='righttowork' id='righttowork' checked={formData.righttowork} onChange={handleChange}/>
       <br/>
-      <input type="submit"/>
+      <button type="submit" className="login-btn">Submit</button>
     </form>
     </div>
   );
 }
+
+
