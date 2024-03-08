@@ -1,37 +1,20 @@
 import React, { useState } from 'react';
 import '../Styles/LoginPage.css';
+import ReusableForm from '../Components/Form';
+import { MailRounded } from '@mui/icons-material';
 
 export default function LoginPage()
 {    
-   const [loginData,setLoginData] = useState({
-    email: '',
-    password: ''
-   });
-   const onSubmit = (event) => {
-    event.preventDefault(); 
-    console.log(loginData); 
-    }
-    const handleChange = (event) => {
-        const {name,value} = event.target;
-        setLoginData(previousData => ({
-          ...previousData,
-          [name]: value
-        }))
+   const formFields = [
+    {  name: 'email', label: 'Email address', type: 'email', placeholder: 'Enter email' },
+    { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter password' },
+   ]
+   const onSubmit = (event) => {    
+    console.log(event); 
     }
     return (
-    <div className="login-container">
-    <h2>Login</h2>
-    <form onSubmit={onSubmit}>
-        <div className="form-group">
-            <label htmlFor="email">Email address:</label>
-            <input autoFocus type="email" className="form-control" name="email" id="email" placeholder="Enter email" onChange={handleChange} />
-        </div>
-        <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input type="password" className="form-control" name="password" id="password" placeholder="Enter password" onChange={handleChange}/>
-        </div>
-        <button type="submit" className="login-btn">Login</button>
-    </form>
+    <div className="login-page">  
+    <ReusableForm formTitle="Login" fields={formFields} onSubmit={onSubmit} submitButtonText="Login"/>
     </div>
     )
 }
