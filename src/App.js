@@ -4,6 +4,11 @@ import Navbar from "./Components/Navbar";
 import HomePage from "./Pages/HomePage"; 
 import CreateEmployeeForm from "./Pages/CreateEmployeeForm"; 
 import LoginPage from "./Pages/LoginPage";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 const App = () =>
 {
   return (
