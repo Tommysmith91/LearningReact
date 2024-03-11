@@ -1,5 +1,6 @@
 import '../Styles/App.css';
 import ReusableForm from '../Components/Form';
+import EmployeeService from '../ApiServices/EmployeeService';
 
 
 export default function CreateEmployeeForm() {
@@ -14,8 +15,11 @@ export default function CreateEmployeeForm() {
     {name:'employmentstartdate',label: 'Employment Start Date',type:'date',placeholder: ''},
     {name:'hasrighttowork',label:'Has Right To Work In UK', type:'checkbox'}
    ]
-    const onSubmit = (event) => {      
+   const employeeService = EmployeeService();
+  
+   const onSubmit = async (event) => {      
       console.log(event);
+      await employeeService.CreateEmployee(event);
     };    
   return (
     <div>
