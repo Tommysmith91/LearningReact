@@ -13,10 +13,11 @@ const Navbar = () => {
        <div
          className={`nav__menu`}
          id="nav-menu"
+         data-testid="nav__menu"
        >
          <ul className="nav__list">
            <li className="nav__item">
-             <NavLink to="/" className="nav__link">
+             <NavLink to="/homepage" className="nav__link">
                <Button variant="contained"><HomeIcon style={{marginRight:'8px'}}/>Home</Button>
              </NavLink>
            </li>           
