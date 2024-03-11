@@ -14,7 +14,7 @@ const App = () =>
   return (
     <BrowserRouter>
     <Navbar/>
-    <main className="main-content">
+    <main className="main-content" data-testid="main-content">
     <Routes>
       <Route exact path='/' element={<LoginPage/>}/>
       <Route path='/homepage' element={<HomePage/>} />
