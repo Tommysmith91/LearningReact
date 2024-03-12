@@ -10,10 +10,10 @@ export default function CreateEmployeeForm() {
     { name: 'age', label: 'Age', type: 'number', placeholder: 'Enter Age', value: 0 },
     {name:'addressline1',label:'Address Line 1', type:'text', placeholder: '64 Zoo Lane'},
     {name:'addressline2',label:'Address Line 2', type:'text',placeholder:'Zoopington'},
-    {name:'city/town',label:'City/Town', type:'text',placeholder: 'Chester'},
+    {name:'citytown',label:'City/Town', type:'text',placeholder: 'Chester'},
     {name:'country',label:'Country', type:'text',placeholder:'United Kingdom'},
     {name:'postcode',label:'Postcode',type:'text',placeholder:'TR3 3SS'},
-    {name:'employmentstartdate',label: 'Employment Start Date',type:'date'},
+    {name:'startofemployment',label: 'Employment Start Date',type:'date'},
     {name:'hasrighttowork',label:'Has Right To Work In UK', type:'checkbox'}
    ]
    const [resultMessage,setResultMessage] = useState('');
