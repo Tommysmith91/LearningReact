@@ -13,9 +13,18 @@ const ReusableForm = ({ formTitle,fields, onSubmit,submitButtonText }) => {
 
   const handleChange = (event) => {
     const { name, value,type,checked } = event.target;
+    let parsedValue = value;
+
+    if(type === 'number'){
+      let parsedNo = parseInt(value,10);
+      parsedValue = !isNaN(parsedNo) ? parsedNo : 0;
+    }
+    if(type === 'date' && value === ''){
+        value = "2000-01-01";
+    }
     setFormData((prevFormData) => ({
       ...prevFormData,      
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : parsedValue
     }));
   };
 
