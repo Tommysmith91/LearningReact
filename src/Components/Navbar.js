@@ -16,6 +16,11 @@ const Navbar = () => {
          data-testid="nav__menu"
        >
          <ul className="nav__list">
+         <li className="nav__item">
+             <NavLink to="/" className="nav__link">
+               <Button variant="contained">Login</Button>
+             </NavLink>
+           </li>    
            <li className="nav__item">
              <NavLink to="/homepage" className="nav__link">
                <Button variant="contained"><HomeIcon style={{marginRight:'8px'}}/>Home</Button>

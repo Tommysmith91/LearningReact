@@ -6,20 +6,34 @@ const ReusableForm = ({ formTitle,fields, onSubmit,submitButtonText }) => {
   const [formData, setFormData] = useState(() => {
     const initialData = {};
     fields.forEach((field) => {
-      initialData[field.name] = field.type === 'checkbox' ? false : '';
+      let initialValue;
+      if(field.type === 'checkbox')
+      {
+        initialValue = false;
+      }
+      if(field.type ==='number'){
+        initialValue = 0;
+      }
+      initialData[field.name] = initialValue;
     });
     return initialData;
   });
 
   const handleChange = (event) => {
     const { name, value,type,checked } = event.target;
+    let parsedValue = value;
+
+    if(type === 'number'){
+      let parsedNo = parseInt(value,10);
+      parsedValue = !isNaN(parsedNo) ? parsedNo : 0;
+    }
     setFormData((prevFormData) => ({
       ...prevFormData,      
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : parsedValue
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();    
     onSubmit(formData);
   };
