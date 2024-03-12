@@ -19,7 +19,7 @@ const CreateEmployee = async (newEmployee) => {
 };
 const DeleteEmployee = async(id) => {
     try{
-        await employeeService.delete(`/employees/${id}`);        
+        await employeeService.delete(`/employee/${id}`);        
     }catch(error){
         throw error;
     }
