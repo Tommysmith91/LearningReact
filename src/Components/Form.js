@@ -6,7 +6,15 @@ const ReusableForm = ({ formTitle,fields, onSubmit,submitButtonText }) => {
   const [formData, setFormData] = useState(() => {
     const initialData = {};
     fields.forEach((field) => {
-      initialData[field.name] = field.type === 'checkbox' ? false : '';
+      let initialValue;
+      if(field.type === 'checkbox')
+      {
+        initialValue = false;
+      }
+      if(field.type ==='number'){
+        initialValue = 0;
+      }
+      initialData[field.name] = initialValue;
     });
     return initialData;
   });
@@ -19,16 +27,13 @@ const ReusableForm = ({ formTitle,fields, onSubmit,submitButtonText }) => {
       let parsedNo = parseInt(value,10);
       parsedValue = !isNaN(parsedNo) ? parsedNo : 0;
     }
-    if(type === 'date' && value === ''){
-        value = "2000-01-01";
-    }
     setFormData((prevFormData) => ({
       ...prevFormData,      
       [name]: type === 'checkbox' ? checked : parsedValue
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();    
     onSubmit(formData);
   };

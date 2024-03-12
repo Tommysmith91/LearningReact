@@ -8,22 +8,41 @@ function EmployeeService()
     const employeeService = axios.create({baseURL: API_BASE_URL});
 
     const [employee,setEmployee] = useState(null);
-    const [error,setError] = useState("");
 
 const CreateEmployee = async (newEmployee) => {
     try {
         const response = await employeeService.post('/employees', newEmployee);
-        return setEmployee(response.data);
+        setEmployee(response.data);        
     } catch (error) {
-        setError('Error creating employee')
+        throw error;
+    }
+};
+const DeleteEmployee = async(id) => {
+    try{
+        await employeeService.delete(`/employees/${id}`);        
+    }catch(error){
+        throw error;
+    }
+};
+const GetEmployees = async () => {
+    try
+    {
+       const response = await employeeService.get('/employees');
+       console.log(response);
+       return response;
+       
+    }
+    catch(error){
+        throw error;
     }
 };
 
 
 return {
     employee,
-    error,
-    CreateEmployee
+    CreateEmployee,
+    DeleteEmployee,
+    GetEmployees
 }
 }
 
