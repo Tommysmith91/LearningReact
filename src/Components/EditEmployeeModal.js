@@ -59,7 +59,7 @@ function EmployeeEditModal(idObject){
         console.log(showModal)
     };
     function onSubmit(){
-
+        //TODO: Call out to the Put endpoint and update the entry by passing the ID and updated model. Need to store the ID somewhere so we can pass it over
     };
     
     return(

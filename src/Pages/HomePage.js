@@ -1,6 +1,6 @@
 import React from "react";
 import EmployeeService from '../ApiServices/EmployeeService';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useMem } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,14 +15,11 @@ export default function HomePage() {
 
    const [employees,setEmployees] = useState([]);
    const employeeService = EmployeeService();
-   const [deleted,setDeleted] = useState(false);
-
-   
+   const [deleted,setDeleted] = useState(false);   
    
    useEffect(() => {
     async function FetchEmployees(){
-    try{
-
+    try{      
       const response = await employeeService.GetEmployees();
       setEmployees(response.data);
     }
@@ -36,7 +33,7 @@ export default function HomePage() {
    const handleDeletedEmployee = async(employeeId) => {
     try{
       await employeeService.DeleteEmployee(employeeId);
-      setDeleted(true);
+      setDeleted(!deleted);
     }
     catch(error){
       console.log(error);
