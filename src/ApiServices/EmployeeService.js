@@ -36,13 +36,36 @@ const GetEmployees = async () => {
         throw error;
     }
 };
-
+const UpdateEmployee = async (employeeForUpdate,id) => {
+    try
+    {
+       const response = await employeeService.put(`/employees/${id}`,employeeForUpdate);
+       console.log(response);
+       return response;       
+    }
+    catch(error){
+        throw error;
+    }
+};
+const GetEmployee = async (id) => {
+    try
+    {
+       const response = await employeeService.get(`/employees/${id}`);
+       console.log(response);
+       return response;       
+    }
+    catch(error){
+        throw error;
+    }
+};
 
 return {
     employee,
     CreateEmployee,
     DeleteEmployee,
-    GetEmployees
+    GetEmployees,
+    UpdateEmployee,
+    GetEmployee
 }
 }
 

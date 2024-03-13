@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/LoginPage.css';
 import ReusableForm from '../Components/Form';
-import { MailRounded } from '@mui/icons-material';
 
 export default function LoginPage()
 {    
@@ -14,7 +13,7 @@ export default function LoginPage()
     }
     return (
     <div className="login-page">  
-    <ReusableForm formTitle="Login" fields={formFields} onSubmit={onSubmit} submitButtonText="Login"/>
+    <ReusableForm formTitle="Login" fields={formFields} onSubmit={onSubmit} submitButtonText="Login" initialData={{}}/>
     </div>
     )
 }

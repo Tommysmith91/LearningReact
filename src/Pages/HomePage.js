@@ -8,7 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Typography,Button} from '@mui/material';
+import {Button} from '@mui/material';
+import EmployeeEditModal from "../Components/EditEmployeeModal";
 
 export default function HomePage() {
 
@@ -58,6 +59,7 @@ export default function HomePage() {
                         <TableCell>City/Town</TableCell>
                         <TableCell>Postcode</TableCell>
                         <TableCell>Country</TableCell>
+                        <TableCell>Edit</TableCell>
                         <TableCell>Delete</TableCell>
                     </TableRow>
                 </TableHead>
@@ -74,6 +76,7 @@ export default function HomePage() {
                             <TableCell>{employee.cityTown}</TableCell>
                             <TableCell>{employee.postcode}</TableCell>
                             <TableCell>{employee.country}</TableCell>
+                            <TableCell><EmployeeEditModal id={employee.id}></EmployeeEditModal></TableCell>
                             <TableCell><Button variant="contained" sx={{backgroundColor: '#FF0000',color:"#FFF"}} onClick={async () => { await handleDeletedEmployee(employee.id);}}>Delete</Button></TableCell>
                         </TableRow>
                     ))}

@@ -35,7 +35,7 @@ export default function CreateEmployeeForm() {
     <div>
       {resultMessage && <p>{resultMessage}</p>}
     <ReusableForm formTitle="Create Employee" onSubmit={onSubmit} fields={formFields}
-    submitButtonText="Create"/>
+    submitButtonText="Create" initialData={{}}/>
     </div>
   );
 }
