@@ -39,6 +39,9 @@ export default function HomePage() {
       console.log(error);
     }
    }
+   const handleReloadEmployees = async() => {
+    setDeleted(!deleted);
+   }
 
     return (
       <div className='container'>        
@@ -73,7 +76,7 @@ export default function HomePage() {
                             <TableCell>{employee.cityTown}</TableCell>
                             <TableCell>{employee.postcode}</TableCell>
                             <TableCell>{employee.country}</TableCell>
-                            <TableCell><EmployeeEditModal id={employee.id}></EmployeeEditModal></TableCell>
+                            <TableCell><EmployeeEditModal id={employee.id} onModalClosed={handleReloadEmployees}></EmployeeEditModal></TableCell>
                             <TableCell><Button variant="contained" sx={{backgroundColor: '#FF0000',color:"#FFF"}} onClick={async () => { await handleDeletedEmployee(employee.id);}}>Delete</Button></TableCell>
                         </TableRow>
                     ))}

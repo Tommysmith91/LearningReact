@@ -28,11 +28,11 @@ const style = {
     {name:'startOfEmployment',label: 'Employment Start Date',type:'date'},
     {name:'hasRightToWork',label:'Has Right To Work In UK', type:'checkbox'}
    ]
-function EmployeeEditModal(idObject){
+function EmployeeEditModal({id,onModalClosed}){
     const [showModal,setShowModal] = useState(false);
     const employeeService = EmployeeService();
     const [employeeData,setEmployeeData] = useState(null);
-    const {id} = idObject;
+    
     useEffect(() => {
         let isMounted = true;
         
@@ -46,20 +46,31 @@ function EmployeeEditModal(idObject){
             }
             
         };      
-        if(showModal && id){
+        if(showModal && id && !employeeData){
             fetchEmployeeData();
         }
         return () => {
             isMounted = false;
         }
-    },[showModal,id]);
+    },[showModal,id,employeeData]);
 
     function displayEditModal(){
-        setShowModal(!showModal); 
-        console.log(showModal)
+        setShowModal(!showModal);         
     };
-    function onSubmit(){
-        //TODO: Call out to the Put endpoint and update the entry by passing the ID and updated model. Need to store the ID somewhere so we can pass it over
+    const onSubmit = async (updatedEmployeeData) => {
+        try
+        {
+        const response = await employeeService.UpdateEmployee(updatedEmployeeData,id);
+        setShowModal(false);  
+        if(onModalClosed){
+            onModalClosed();
+        }
+        setEmployeeData(null);
+        }
+        catch(error){
+            console.log(error);
+        }
+        
     };
     
     return(
