@@ -34,23 +34,6 @@ const Navbar = () => {
               <Button variant="contained"><Person2Icon/>Create Employee</Button>
              </NavLink>
            </li>
-           <li className="nav__item">
-             <NavLink
-               to="/favorite"
-               className="nav__link"                
-             >
-              <Button variant="contained">Favourite</Button>
-             </NavLink>
-           </li>
-           <li className="nav__item">
-             <NavLink
-               to="/location"
-               className="nav__link"
-                
-             >
-              <Button variant="contained">Contact Us</Button>
-             </NavLink>
-           </li>
          </ul>       
         </div>
      </Toolbar>
