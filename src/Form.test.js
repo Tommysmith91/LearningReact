@@ -7,7 +7,7 @@ test("Reusable Form Renders One Input Text Box With Name Test, Label Test and Pl
     const fields = [
         {name: "Test", label: "Test", type: "Text", placeholder:"Test Text"}
     ]
-    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={() => {}} submitButtonText=""/>);
+    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={() => {}} submitButtonText="" initialData={{}}/>);
 
     const inputField = screen.getByLabelText("Test:");
     expect(inputField).toBeInTheDocument();
@@ -21,7 +21,7 @@ test("Reusable Form Renders One Input Text Box With Name Test, Label Test and Pl
     const fields = [
         {name: "Test", label: "Test", type: "Text", placeholder:"Test Text"}
     ]
-    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={() => {}} submitButtonText="Test Button"/>);
+    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={() => {}} submitButtonText="Test Button" initialData={{}}/>);
 
     const inputField = screen.getByLabelText("Test:");
     expect(inputField).toBeInTheDocument();
@@ -39,7 +39,7 @@ test("Reusable Form Submits Form With Correct Data", () => {
         {name:"Password",label:"Password",type:"password", placeholder:"Password"}
     ]
     const onSubmitMock = jest.fn();
-    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={onSubmitMock} submitButtonText="Test Button"/>);
+    render(<ReusableForm formTitle="Test" fields={fields} onSubmit={onSubmitMock} submitButtonText="Test Button" initialData={{}}/>);
 
     const usernameInput = screen.getByLabelText("Username:");
     const passwordInput = screen.getByLabelText("Password:");

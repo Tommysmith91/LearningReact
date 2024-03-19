@@ -1,6 +1,6 @@
 import React from "react";
 import EmployeeService from '../ApiServices/EmployeeService';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useMem } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,20 +8,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Typography,Button} from '@mui/material';
+import {Button} from '@mui/material';
+import EmployeeEditModal from "../Components/EditEmployeeModal";
 
 export default function HomePage() {
 
    const [employees,setEmployees] = useState([]);
    const employeeService = EmployeeService();
-   const [deleted,setDeleted] = useState(false);
-
-   
+   const [deleted,setDeleted] = useState(false);   
    
    useEffect(() => {
     async function FetchEmployees(){
-    try{
-
+    try{      
       const response = await employeeService.GetEmployees();
       setEmployees(response.data);
     }
@@ -35,11 +33,14 @@ export default function HomePage() {
    const handleDeletedEmployee = async(employeeId) => {
     try{
       await employeeService.DeleteEmployee(employeeId);
-      setDeleted(true);
+      setDeleted(!deleted);
     }
     catch(error){
       console.log(error);
     }
+   }
+   const handleReloadEmployees = async() => {
+    setDeleted(!deleted);
    }
 
     return (
@@ -58,6 +59,7 @@ export default function HomePage() {
                         <TableCell>City/Town</TableCell>
                         <TableCell>Postcode</TableCell>
                         <TableCell>Country</TableCell>
+                        <TableCell>Edit</TableCell>
                         <TableCell>Delete</TableCell>
                     </TableRow>
                 </TableHead>
@@ -74,6 +76,7 @@ export default function HomePage() {
                             <TableCell>{employee.cityTown}</TableCell>
                             <TableCell>{employee.postcode}</TableCell>
                             <TableCell>{employee.country}</TableCell>
+                            <TableCell><EmployeeEditModal id={employee.id} onModalClosed={handleReloadEmployees}></EmployeeEditModal></TableCell>
                             <TableCell><Button variant="contained" sx={{backgroundColor: '#FF0000',color:"#FFF"}} onClick={async () => { await handleDeletedEmployee(employee.id);}}>Delete</Button></TableCell>
                         </TableRow>
                     ))}
